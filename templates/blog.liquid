@@ -1,0 +1,73 @@
+{% comment %}
+  The contents of the blog.liquid template can be found in /sections/blog-template/
+{% endcomment %}
+
+{% section 'blog-template' %}
+
+
+<style>
+  
+  .content-for-layout {
+    padding-bottom: 0px;
+}
+  
+ .grid__item {
+    float: left;
+    padding-left: 85px;
+    width: 100%;
+}
+  
+.medium-up--one-third {
+    width: 100%;
+    padding: 0px;
+}
+  
+.card-list.grid {
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    gap: 0px 85px;
+}
+  
+  
+  
+@media only screen and (max-width: 767px) {
+ 
+  .card-list.grid {
+
+    display: block;
+}
+  
+  .card-list__column .card {
+    width: 100%;
+  
+}
+ .card__wrapper {
+    margin-bottom: 43px;
+} 
+  
+  div#shopify-section-blog-template {
+    margin-top: 52px;
+}
+  
+  .page-width {
+    padding: 0px 24px;
+}
+  
+  .card-list__column .card {
+
+    padding: 0px;
+ 
+}
+  
+  .card-list.grid {
+    display: block;
+    margin: 0px auto;
+}
+  
+  div#shopify-section-footer {
+    margin-top: 74px;
+}
+  
+}
+  
+</style>

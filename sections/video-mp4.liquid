@@ -1,0 +1,37 @@
+<video autoplay muted loop playsInline id="myVideo">
+  <source src="{{ section.settings.mp4_video_url }}" type="video/mp4">
+</video>
+
+<style>
+video#myVideo {
+    width: 100%;
+}
+</style>
+
+{% schema %}
+{
+  "name": {
+    "en": "Video Mp4"
+  },
+  "class": "index-section index-section--video-mp4",
+  "settings": [
+    {
+      "type": "url",
+      "id": "mp4_video_url",
+      "label": {
+        "en": "Enter Mp4 Video link"
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Video Mp4"
+      },
+      "category": {
+        "en": "Video"
+      }
+    }
+  ]
+}
+{% endschema %}

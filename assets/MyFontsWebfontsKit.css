@@ -1,0 +1,28 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 4028089, 2021-03-17T10:26:12-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: AndaleMono by Monotype
+ * URL: https://www.myfonts.com/fonts/mti/andale-mono/regular/
+ * Copyright: Digitized data &amp;#x00A9; 1993-2001 The Monotype Corporation. All Rights Reserved.
+ * 
+ * 
+ * 
+ * © 2021 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/3d76b9");
+  
+@font-face {
+  font-family: "AndaleMono";
+  src: url('/assets/font.woff2') format('https://cdn.shopify.com/s/files/1/0048/1322/6033/files/font.woff2'), url('https://cdn.shopify.com/s/files/1/0048/1322/6033/files/font.woff') format('woff');
+}
+

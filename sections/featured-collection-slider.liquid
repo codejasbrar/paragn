@@ -1,0 +1,784 @@
+{%- assign featuredCollection = collections[section.settings.collection] -%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+<div class="bbb_viewed">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="bbb_main_container">
+                    <div class="bbb_viewed_title_container">
+                        <h3 class="bbb_viewed_title">{{ section.settings.title }}</h3>
+                        <div class="bbb_btn">
+                          <div class="see_btn"><span>See All</span></div>
+                        </div>
+                    </div>
+                    <div class="bbb_viewed_slider_container">
+                        <div class="owl-carousel owl-theme bbb_viewed_slider">
+                            {% unless featuredCollection == blank %}
+          {% for product in featuredCollection.products limit: limit %}
+            {% include 'product-card', product: product, grid_style: section.settings.grid_style %}
+          {% endfor %}
+        {% else %}
+          {% for i in (1..limit) %}
+            <div class="" data-animate>
+              <a href="{{ product.url | within: collection }}" class="card card__wrapper{% if section.settings.show_spacing %} card__wrapper--padding{% endif %} text-center">
+                <div class="card__image-wrapper{% if settings.product_image_spacing %} card__image-wrapper--padding{% endif %}">
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+
+                  <div class="card__info">
+                    {% if section.settings.show_vendor %}
+                      <div class="card__brand">{{ 'homepage.onboarding.product_vendor' | t }}</div>
+                    {% endif %}
+
+                    <div class="card__name h4">{{ 'homepage.onboarding.product_title' | t }}</div>
+                    <div class="card__price">{{ 1999 | money }}</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        {% endunless %}
+                        </div>
+                      <div class="bbb_viewed_nav_container">
+                        <div class="bbb_viewed_nav bbb_viewed_prev"><img src="https://cdn.shopify.com/s/files/1/0048/1322/6033/files/left-arrow.svg?v=1615467286"></div>
+                        <div class="bbb_viewed_nav bbb_viewed_next"><img src="https://cdn.shopify.com/s/files/1/0048/1322/6033/files/right-arrow.svg?v=1615467286"></div>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+  .bbb_viewed_slider_container .owl-stage-outer .owl-item .card{
+opacity: 1;
+}
+ .bbb_viewed {
+     padding-top: 51px;
+     padding-bottom: 60px;
+ }
+
+ .bbb_main_container {
+     background-color: #fff;
+     padding: 11px
+ }
+
+.bbb_viewed_title_container {
+    display: flex;
+    justify-content: space-between;
+  	max-width: 1440px;
+    padding: 0 63px;
+    margin: 0 auto;
+}
+
+ .bbb_viewed_title {
+     margin-bottom: 16px;
+     margin-top: 8px
+ }
+
+ .bbb_viewed_nav_container {
+     position: absolute;
+     bottom: 14px
+ }
+
+ .bbb_viewed_nav {
+     display: inline-block;
+     cursor: pointer
+ }
+
+ .bbb_viewed_nav i {
+     color: #dadada;
+     font-size: 18px;
+     padding: 5px;
+     -webkit-transition: all 200ms ease;
+     -moz-transition: all 200ms ease;
+     -ms-transition: all 200ms ease;
+     -o-transition: all 200ms ease;
+     transition: all 200ms ease
+ }
+
+ .bbb_viewed_nav:hover i {
+     color: #606264
+ }
+
+ .bbb_viewed_prev {
+     margin-right: 15px
+ }
+
+ .bbb_viewed_slider_container {
+     padding-top: 13px
+ }
+
+ .bbb_viewed_item {
+     width: 100%;
+     background: #FFFFFF;
+     border-radius: 2px;
+     padding-top: 25px;
+     padding-bottom: 25px;
+     padding-left: 30px;
+     padding-right: 30px
+ }
+
+ .bbb_viewed_image {
+     width: 150px;
+     height: 150px
+ }
+
+ .bbb_viewed_image img {
+     display: block;
+     max-width: 100%
+ }
+
+ .bbb_viewed_content {
+     width: 100%;
+     margin-top: 25px
+ }
+
+ .bbb_viewed_price {
+     font-size: 16px;
+     color: #000000;
+     font-weight: 500
+ }
+
+ .bbb_viewed_item.discount .bbb_viewed_price {
+     color: #df3b3b
+ }
+
+ .bbb_viewed_price span {
+     position: relative;
+     font-size: 12px;
+     font-weight: 400;
+     color: rgba(0, 0, 0, 0.6);
+     margin-left: 8px
+ }
+
+ .bbb_viewed_price span::after {
+     display: block;
+     position: absolute;
+     top: 6px;
+     left: -2px;
+     width: calc(100% + 4px);
+     height: 1px;
+     background: #8d8d8d;
+     content: ''
+ }
+
+ .bbb_viewed_name {
+     margin-top: 3px
+ }
+
+ .bbb_viewed_name a {
+     font-size: 14px;
+     color: #000000;
+     -webkit-transition: all 200ms ease;
+     -moz-transition: all 200ms ease;
+     -ms-transition: all 200ms ease;
+     -o-transition: all 200ms ease;
+     transition: all 200ms ease
+ }
+
+ .bbb_viewed_name a:hover {
+     color: #0e8ce4
+ }
+
+ .item_marks {
+     position: absolute;
+     top: 18px;
+     left: 18px
+ }
+
+ .item_mark {
+     display: none;
+     width: 36px;
+     height: 36px;
+     border-radius: 50%;
+     color: #FFFFFF;
+     font-size: 10px;
+     font-weight: 500;
+     line-height: 36px;
+     text-align: center
+ }
+
+ .item_discount {
+     background: #df3b3b;
+     margin-right: 5px
+ }
+
+ .item_new {
+     background: #0e8ce4
+ }
+
+ .bbb_viewed_item.discount .item_discount {
+     display: inline-block
+ }
+
+ .bbb_viewed_item.is_new .item_new {
+     display: inline-block
+ }
+  .bbb_viewed_nav.bbb_viewed_next {
+    position: absolute;
+    right: 0px;
+    padding: 12px;
+    width: 60px;
+    height: 38px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: 0px;
+	background: #fff;
+    z-index: 99;
+}
+
+.bbb_viewed_nav.bbb_viewed_prev {
+	position: absolute;
+    padding: 12px;
+    width: 60px;
+    height: 38px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: 0px;
+    left: 0px;
+    background: #fff;
+  	z-index: 99;
+}
+  .bbb_viewed_nav_container {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
+  .bbb_viewed_slider_container {
+    position: relative;
+}
+  .see_btn span {
+    text-align: center;
+    font-size: 15px;
+    line-height: 38px;
+    font-family: "AndaleMono";
+    font-weight: bold;
+    cursor: pointer;
+}
+.see_btn {
+    width: 200px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-align: center;
+}
+</style>
+<script>
+$(document).ready(function()
+{
+if($('.bbb_viewed_slider').length)
+{
+var viewedSlider = $('.bbb_viewed_slider');
+
+viewedSlider.owlCarousel(
+{
+loop:true,
+margin:30,
+autoplay:true,
+autoplayTimeout:6000,
+nav:false,
+dots:true,
+responsive:
+{
+0:{items:2},
+575:{items:2},
+768:{items:3},
+991:{items:3.5},
+1199:{items:3.5}
+}
+});
+
+if($('.bbb_viewed_prev').length)
+{
+var prev = $('.bbb_viewed_prev');
+prev.on('click', function()
+{
+viewedSlider.trigger('prev.owl.carousel');
+});
+}
+
+if($('.bbb_viewed_next').length)
+{
+var next = $('.bbb_viewed_next');
+next.on('click', function()
+{
+viewedSlider.trigger('next.owl.carousel');
+});
+}
+}
+});
+</script>
+{% schema %}
+{
+  "name": {
+    "cs": "Propagovaná kolekce",
+    "da": "Udvalgt kollektion",
+    "de": "Vorgestellte Kategorie",
+    "en": "Cus collection Slider",
+    "es": "Colección destacada",
+    "fi": "Esittelyssä oleva kokoelma",
+    "fr": "Collection en vedette",
+    "it": "Collezione in evidenza",
+    "ja": "特集コレクション",
+    "ko": "추천 컬렉션",
+    "nb": "Utvalgt samling",
+    "nl": "Uitgelichte collectie",
+    "pl": "Polecana kolekcja",
+    "pt-BR": "Coleção em destaque",
+    "pt-PT": "Coleção em destaque",
+    "sv": "Utvald produktserie",
+    "th": "คอลเลกชันแนะนำ",
+    "tr": "Öne çıkan koleksiyon",
+    "vi": "Bộ sưu tập nổi bật",
+    "zh-CN": "特色产品系列",
+    "zh-TW": "精選商品系列"
+  },
+  "class": "index-section index-section--featured-collection",
+  "settings": [
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": {
+        "cs": "Kolekce",
+        "da": "Kollektion",
+        "de": "Kategorie",
+        "en": "Collection",
+        "es": "Colección",
+        "fi": "Kokoelma",
+        "fr": "Collection",
+        "it": "Collezione",
+        "ja": "コレクション",
+        "ko": "컬렉션",
+        "nb": "Samling",
+        "nl": "Collectie",
+        "pl": "Kolekcja",
+        "pt-BR": "Coleção",
+        "pt-PT": "Coleção",
+        "sv": "Produktserie",
+        "th": "คอลเลกชัน",
+        "tr": "Koleksiyon",
+        "vi": "Bộ sưu tập",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_spacing",
+      "label": {
+        "cs": "Povolit rozestupy mezi obrázky",
+        "da": "Aktivér billedafstand",
+        "de": "Bildabstand aktivieren",
+        "en": "Enable image spacing",
+        "es": "Habilitar espaciado de imagen",
+        "fi": "Ota kuvien välistys käyttöön",
+        "fr": "Activer l'espacement des images",
+        "it": "Abilita spaziatura immagini",
+        "ja": "画像の間隔を有効にする",
+        "ko": "이미지 공간 추가",
+        "nb": "Aktiver bildeavstand",
+        "nl": "Afstand tussen afbeeldingen inschakelen",
+        "pl": "Włącz odstępy między obrazami",
+        "pt-BR": "Habilitar espaçamento de imagem",
+        "pt-PT": "Ativar espaçamento de imagens",
+        "sv": "Aktivera bildavstånd",
+        "th": "เปิดใช้การวางตำแหน่งรูปภาพ",
+        "tr": "Görüntü aralığını etkinleştir",
+        "vi": "Bật giãn cách hình ảnh",
+        "zh-CN": "启用图片间距",
+        "zh-TW": "啟用圖片間距"
+      }
+    },
+    {
+      "type": "header",
+      "content": {
+        "cs": "Text",
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "tr": "Metin",
+        "vi": "Văn bản",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      }
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": {
+        "cs": "Nadpis",
+        "da": "Overskrift",
+        "de": "Titel",
+        "en": "Heading",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "Titre",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pl": "Nagłówek",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "tr": "Başlık",
+        "vi": "Tiêu đề",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
+      },
+      "default": {
+        "cs": "Propagovaná kolekce",
+        "da": "Udvalgt kollektion",
+        "de": "Vorgestellte Kategorie",
+        "en": "Featured collection",
+        "es": "Colección destacada",
+        "fi": "Esittelyssä oleva kokoelma",
+        "fr": "Collection en vedette",
+        "it": "Collezione in evidenza",
+        "ja": "特集コレクション",
+        "ko": "추천 컬렉션",
+        "nb": "Fremhevet samling",
+        "nl": "Uitgelichte collectie",
+        "pl": "Polecana kolekcja",
+        "pt-BR": "Coleção em destaque",
+        "pt-PT": "Coleção em destaque",
+        "sv": "Utvald produktserie",
+        "th": "คอลเลกชันแนะนำ",
+        "tr": "Öne çıkan koleksiyon",
+        "vi": "Bộ sưu tập nổi bật",
+        "zh-CN": "特色产品系列",
+        "zh-TW": "精選商品系列"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": {
+        "cs": "Zobrazit dodavatele produktů",
+        "da": "Vis produktleverandører",
+        "de": "Produktanbieter anzeigen",
+        "en": "Show product vendors",
+        "es": "Mostrar proveedores del producto",
+        "fi": "Näytä tuotteen myyjät",
+        "fr": "Afficher les vendeurs",
+        "it": "Mostra fornitori prodotto",
+        "ja": "商品の販売元を表示する",
+        "ko": "제품 공급 업체 표시",
+        "nb": "Vis produktleverandører",
+        "nl": "Productleveranciers weergeven",
+        "pl": "Pokaż dostawców produktu",
+        "pt-BR": "Exibir fornecedores dos produtos",
+        "pt-PT": "Mostrar fornecedores dos produtos",
+        "sv": "Visa produktleverantörer",
+        "th": "แสดงผู้ขายสินค้า",
+        "tr": "Ürün satıcılarını göster",
+        "vi": "Hiển thị nhà cung cấp sản phẩm",
+        "zh-CN": "显示产品厂商",
+        "zh-TW": "顯示產品廠商"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": {
+        "cs": "Zobrazit tlačítko Zobrazit vše",
+        "da": "Vis knappen \"Se flere\"",
+        "de": "'Alle anzeigen' Button anzeigen",
+        "en": "Show 'View all' button",
+        "es": "Mostrar el botón 'Ver todo'",
+        "fi": "Näytä \"Näytä kaikki\" -painike",
+        "fr": "Afficher le bouton « Tout afficher »",
+        "it": "Mostra il pulsante \"Visualizza tutto\"",
+        "ja": "[すべて表示] ボタンを表示する",
+        "ko": "'모두 보기' 버튼 표시",
+        "nb": "Vis «Se alle»-knapp",
+        "nl": "Knop 'Alles weergeven' weergeven",
+        "pl": "Pokaż przycisk „Wyświetl wszystkie”",
+        "pt-BR": "Exibir botão 'Ver tudo'",
+        "pt-PT": "Mostrar botão \"Ver tudo\"",
+        "sv": "Visa \"Visa alla\"-knappen",
+        "th": "แสดงปุ่ม 'ดูทั้งหมด'",
+        "tr": "\"Tümünü görüntüle\" düğmesini göster",
+        "vi": "Hiển thị nút \"View all\" (Xem tất cả)",
+        "zh-CN": "显示“查看全部”按钮",
+        "zh-TW": "顯示「檢視全部」按鈕"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "use_second_button",
+      "label": {
+        "cs": "Použít styl sekundárního tlačítka",
+        "da": "Brug sekundær knaptypografi",
+        "de": "Stil für sekundäre Schaltflächen verwenden",
+        "en": "Use secondary button style",
+        "es": "Utiliza el estilo de botón secundario",
+        "fi": "Käytä toissijaista painikkeen tyyliä",
+        "fr": "Utiliser le style de bouton secondaire",
+        "it": "Usa stile pulsante secondario",
+        "ja": "サブボタンのスタイルを使用する",
+        "ko": "보조 버튼 스타일 사용",
+        "nb": "Bruk sekundær knappestil",
+        "nl": "Secundaire knopstijl gebruiken",
+        "pl": "Użyj dodatkowego stylu przycisku",
+        "pt-BR": "Usar o estilo de botão secundário",
+        "pt-PT": "Utilizar estilo de botão secundário",
+        "sv": "Använd sekundärknappsstil",
+        "th": "ใช้รูปแบบปุ่มรอง",
+        "tr": "İkincil düğme stilini kullan",
+        "vi": "Sử dụng kiểu nút phụ",
+        "zh-CN": "使用辅助按钮样式",
+        "zh-TW": "使用次要按鈕樣式"
+      },
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": {
+        "cs": "Rozvržení",
+        "da": "Layout",
+        "de": "Layout",
+        "en": "Layout",
+        "es": "Diseño",
+        "fi": "Asettelu",
+        "fr": "Mise en page",
+        "it": "Layout",
+        "ja": "レイアウト",
+        "ko": "레이아웃",
+        "nb": "Oppsett",
+        "nl": "Opmaak",
+        "pl": "Układ",
+        "pt-BR": "Layout",
+        "pt-PT": "Esquema",
+        "sv": "Layout",
+        "th": "เลย์เอาต์",
+        "tr": "Düzen",
+        "vi": "Bố cục",
+        "zh-CN": "布局",
+        "zh-TW": "版面配置"
+      }
+    },
+    {
+      "type": "select",
+      "id": "grid_style",
+      "label": {
+        "cs": "Styl mřížky",
+        "da": "Gittertypografi",
+        "de": "Rasterstil",
+        "en": "Grid style",
+        "es": "Estilo de cuadrícula",
+        "fi": "Ruudukkotyyli",
+        "fr": "Style de grille",
+        "it": "Stile griglia",
+        "ja": "グリッドスタイル",
+        "ko": "그리드 스타일",
+        "nb": "Rutenettstil",
+        "nl": "Rasterstijl",
+        "pl": "Styl siatki",
+        "pt-BR": "Estilo da grade",
+        "pt-PT": "Estilo da grelha",
+        "sv": "Rutnätsstil",
+        "th": "รูปแบบกริด",
+        "tr": "Izgara stili",
+        "vi": "Kiểu lưới",
+        "zh-CN": "网格样式",
+        "zh-TW": "網格樣式"
+      },
+      "default": "collage",
+      "options": [
+        {
+          "value": "collage",
+          "label": {
+            "cs": "Koláž",
+            "da": "Collage",
+            "de": "Collage",
+            "en": "Collage",
+            "es": "Collage",
+            "fi": "Kollaasi",
+            "fr": "Collage",
+            "it": "Collage",
+            "ja": "コラージュ",
+            "ko": "콜라주",
+            "nb": "Fotomontasje",
+            "nl": "Collage",
+            "pl": "Kolaż",
+            "pt-BR": "Colagem",
+            "pt-PT": "Colagem",
+            "sv": "Kollage",
+            "th": "ภาพตัดแปะ",
+            "tr": "Kolaj",
+            "vi": "Ghép",
+            "zh-CN": "拼贴画",
+            "zh-TW": "拼貼"
+          }
+        },
+        {
+          "value": "grid",
+          "label": {
+            "cs": "Mřížka",
+            "da": "Gitter",
+            "de": "Raster",
+            "en": "Grid",
+            "es": "Cuadrícula",
+            "fi": "Ruudukko",
+            "fr": "Grille",
+            "it": "Griglia",
+            "ja": "グリッド",
+            "ko": "그리드",
+            "nb": "Rutenett",
+            "nl": "Raster",
+            "pl": "Siatka",
+            "pt-BR": "Grade",
+            "pt-PT": "Grelha",
+            "sv": "Rutnät",
+            "th": "กริด",
+            "tr": "Izgara",
+            "vi": "Lưới",
+            "zh-CN": "网格",
+            "zh-TW": "網格"
+          }
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "products",
+      "label": {
+        "cs": "Počet produktů na řádek",
+        "da": "Produkter pr. række",
+        "de": "Produkte per Reihe",
+        "en": "Products per row",
+        "es": "Productos por fila",
+        "fi": "Tuotteita per rivi",
+        "fr": "Produits par rangée",
+        "it": "Prodotti per riga",
+        "ja": "行あたりの商品数",
+        "ko": "열 별 제품",
+        "nb": "Produkter per rad",
+        "nl": "Producten per rij",
+        "pl": "Liczba produktów na wiersz",
+        "pt-BR": "Produtos por linha",
+        "pt-PT": "Produtos por linha",
+        "sv": "Produkter per rad",
+        "th": "สินค้าต่อแถว",
+        "tr": "Satır başına ürün",
+        "vi": "Số sản phẩm trên một hàng",
+        "zh-CN": "每行产品数",
+        "zh-TW": "每列產品數"
+      },
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": {
+        "cs": "Řádky",
+        "da": "Rækker",
+        "de": "Reihen",
+        "en": "Rows",
+        "es": "Filas",
+        "fi": "Rivit",
+        "fr": "Rangées",
+        "it": "Righe",
+        "ja": "行",
+        "ko": "열",
+        "nb": "Rader",
+        "nl": "Rijen",
+        "pl": "Wiersze",
+        "pt-BR": "Linhas",
+        "pt-PT": "Linhas",
+        "sv": "Rader",
+        "th": "แถว",
+        "tr": "Satırlar",
+        "vi": "Hàng",
+        "zh-CN": "行数",
+        "zh-TW": "列"
+      },
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "cs": "Propagovaná kolekce",
+        "da": "Udvalgt kollektion",
+        "de": "Vorgestellte Kategorie",
+        "en": "Cus collection Slider",
+        "es": "Colección destacada",
+        "fi": "Esittelyssä oleva kokoelma",
+        "fr": "Collection en vedette",
+        "it": "Collezione in evidenza",
+        "ja": "特集コレクション",
+        "ko": "추천 컬렉션",
+        "nb": "Utvalgt samling",
+        "nl": "Uitgelichte collectie",
+        "pl": "Polecana kolekcja",
+        "pt-BR": "Coleção em destaque",
+        "pt-PT": "Coleção em destaque",
+        "sv": "Utvald produktserie",
+        "th": "คอลเลกชันแนะนำ",
+        "tr": "Öne çıkan koleksiyon",
+        "vi": "Bộ sưu tập nổi bật",
+        "zh-CN": "特色产品系列",
+        "zh-TW": "精選商品系列"
+      },
+      "category": {
+        "cs": "Kolekce",
+        "da": "Kollektion",
+        "de": "Kategorie",
+        "en": "Collection",
+        "es": "Colección",
+        "fi": "Kokoelma",
+        "fr": "Collection",
+        "it": "Collezione",
+        "ja": "コレクション",
+        "ko": "컬렉션",
+        "nb": "Samling",
+        "nl": "Collectie",
+        "pl": "Kolekcja",
+        "pt-BR": "Coleção",
+        "pt-PT": "Coleção",
+        "sv": "Produktserie",
+        "th": "คอลเลกชัน",
+        "tr": "Koleksiyon",
+        "vi": "Bộ sưu tập",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      }
+    }
+  ]
+}
+{% endschema %}
